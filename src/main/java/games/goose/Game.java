@@ -27,4 +27,11 @@ public class Game {
     public boolean existPlayer(String player) {
         return player==null ? false : players.contains(player);
     }
+
+    public void move(String player, int diceOne, int diceTwo) {
+    }
+
+    public int playerPosition(String player) {
+        return -1;
+    }
 }
