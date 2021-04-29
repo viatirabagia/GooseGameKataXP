@@ -1,9 +1,8 @@
 package games.goose;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class AddPlayerTest {
 
@@ -11,7 +10,7 @@ public class AddPlayerTest {
     public void addFirstPlayer()
     {
         Game g = new Game();
-        g.addPlayer("Pippo");
+        assertTrue(g.addPlayer("Pippo"));
         assertEquals(1, g.getPlayersCount());
         assertTrue(g.existPlayer("Pippo"));
     }
@@ -20,8 +19,8 @@ public class AddPlayerTest {
     public void addSecondPlayer()
     {
         Game g = new Game();
-        g.addPlayer("Pippo");
-        g.addPlayer("Pluto");
+        assertTrue(g.addPlayer("Pippo"));
+        assertTrue(g.addPlayer("Pluto"));
         assertEquals(2, g.getPlayersCount());
         assertTrue(g.existPlayer("Pluto"));
     }
@@ -30,8 +29,8 @@ public class AddPlayerTest {
     public void addExistingPlayer()
     {
         Game g = new Game();
-        g.addPlayer("Pippo");
-        g.addPlayer("Pippo");
+        assertTrue(g.addPlayer("Pippo"));
+        assertFalse(g.addPlayer("Pippo"));
         assertEquals(1, g.getPlayersCount());
     }
 
