@@ -11,6 +11,8 @@ public class GooseMoveRules implements MoveRules {
         } else if (nextPosition > 63) {
             nextPosition = 63 - (nextPosition - 63);
             type = MoveResult.REBOUND;
+        } else if (nextPosition == 6) {
+            nextPosition = 12;
         }
         Result r = new Result();
         r.type = type;
