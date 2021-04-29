@@ -39,8 +39,16 @@ public class Game {
 
     public MoveResult move(final String player, int diceOne, int diceTwo) {
         int currentPosition = playerPosition(player);
-        positions.put(player, nextPosition(currentPosition, diceOne, diceTwo));
-        return MoveResult.DEFAULT;
+        int nextPosition = nextPosition(currentPosition, diceOne, diceTwo);
+        MoveResult result = MoveResult.DEFAULT;
+        if (nextPosition == 63) {
+            result = MoveResult.WIN;
+        } else if (nextPosition > 63) {
+            nextPosition = 63 - (nextPosition - 63);
+            result = MoveResult.REBOUND;
+        }
+        positions.put(player, nextPosition);
+        return result;
     }
 
     private int nextPosition(int currentPosition, int diceOne, int diceTwo) {
