@@ -1,12 +1,30 @@
 package games.goose;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
-    public void addPlayer(String pippo) {
+
+    private List<String> players = new ArrayList<>();
+
+    /**
+     *
+     * @param player
+     * @return true if added, false otherwise
+     */
+    public boolean addPlayer(String player) {
+        if (player == null || players.contains(player)) {
+            return false;
+        }
+        players.add(player);
+        return true;
     }
 
     public int getPlayersCount() {
+        return players.size();
     }
 
-    public boolean existPlayer(String pippo) {
+    public boolean existPlayer(String player) {
+        return player==null ? false : players.contains(player);
     }
 }
