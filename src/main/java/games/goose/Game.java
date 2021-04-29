@@ -7,6 +7,12 @@ import java.util.Map;
 
 public class Game {
 
+    public enum MoveResult {
+        WIN,
+        REBOUND,
+        DEFAULT
+    }
+
     private List<String> players = new ArrayList<>();
     private Map<String, Integer> positions = new HashMap<>();
 
@@ -31,10 +37,10 @@ public class Game {
         return player==null ? false : players.contains(player);
     }
 
-    public void move(final String player, int diceOne, int diceTwo) {
+    public MoveResult move(final String player, int diceOne, int diceTwo) {
         int currentPosition = playerPosition(player);
         positions.put(player, nextPosition(currentPosition, diceOne, diceTwo));
-
+        return MoveResult.DEFAULT;
     }
 
     private int nextPosition(int currentPosition, int diceOne, int diceTwo) {
@@ -49,4 +55,7 @@ public class Game {
         return currentPosition;
     }
 
+    public void forcePosition(final String player, int newPosition) {
+        positions.put(player, newPosition);
+    }
 }
