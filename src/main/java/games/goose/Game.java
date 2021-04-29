@@ -37,12 +37,16 @@ public class Game {
         return player==null ? false : players.contains(player);
     }
 
-    public void move(String playerOne) {
+    public MoveResult move(final String player) {
+        return move(player, new AutomaticDice(), new AutomaticDice());
+    }
+    public MoveResult move(final String player, int diceOne, int diceTwo) {
+        return move(player, new HumanDice(diceOne), new HumanDice(diceTwo));
     }
 
-    public MoveResult move(final String player, int diceOne, int diceTwo) {
+    public MoveResult move(final String player, Dice diceOne, Dice diceTwo) {
         int currentPosition = playerPosition(player);
-        int nextPosition = nextPosition(currentPosition, diceOne, diceTwo);
+        int nextPosition = nextPosition(currentPosition, diceOne.throwDice(), diceTwo.throwDice());
         MoveResult result = MoveResult.DEFAULT;
         if (nextPosition == 63) {
             result = MoveResult.WIN;
