@@ -20,8 +20,8 @@ public class MovePlayerTest {
         assertEquals(0, g.playerPosition(playerOne));
         assertEquals(0, g.playerPosition(playerTwo));
 
-        g.move(playerOne, 4, 2);
-        assertEquals(6, g.playerPosition(playerOne));
+        g.move(playerOne, 4, 3);
+        assertEquals(7, g.playerPosition(playerOne));
 
         g.move(playerTwo, 2, 2);
         assertEquals(4, g.playerPosition(playerTwo));
@@ -33,10 +33,10 @@ public class MovePlayerTest {
 
         Game g = new Game();
         assertTrue(g.addPlayer(playerOne));
-        g.move(playerOne, 4, 2);
-        assertEquals(6, g.playerPosition(playerOne));
+        g.move(playerOne, 4, 3);
+        assertEquals(7, g.playerPosition(playerOne));
         g.move(playerOne, 2, 3);
-        assertEquals(11, g.playerPosition(playerOne));
+        assertEquals(12, g.playerPosition(playerOne));
     }
 
 }

@@ -46,7 +46,7 @@ public class Game {
         return move(player, new HumanDice(diceOne), new HumanDice(diceTwo));
     }
 
-    public MoveRules.MoveResult move(final String player, Dice diceOne, Dice diceTwo) {
+    private MoveRules.MoveResult move(final String player, Dice diceOne, Dice diceTwo) {
         int currentPosition = playerPosition(player);
         MoveRules.Result result = rules.nextPosition(currentPosition, diceOne.throwDice(), diceTwo.throwDice());
         positions.put(player, result.position);
@@ -61,7 +61,4 @@ public class Game {
         return currentPosition;
     }
 
-    public void forcePosition(final String player, int newPosition) {
-        positions.put(player, newPosition);
-    }
 }

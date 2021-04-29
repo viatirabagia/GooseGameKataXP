@@ -10,32 +10,20 @@ public class WinTest {
     @Test
     public void playerMoveToWinPosition() {
 
-        String playerOne = "Pippo";
-
-        Game g = new Game();
-        assertTrue(g.addPlayer(playerOne));
-
-        g.forcePosition(playerOne, 60);
-        assertEquals(60, g.playerPosition(playerOne));
-
-        assertEquals(MoveRules.MoveResult.WIN, g.move(playerOne, 1, 2));
+        MoveRules rules = new GooseMoveRules();
+        MoveRules.Result result = rules.nextPosition(60, 1, 2);
+        assertEquals(63, result.position);
+        assertEquals(MoveRules.MoveResult.WIN, result.type);
 
     }
 
     @Test
     public void playerMoveBeyondWinPositionAndRebound() {
 
-        String playerOne = "Pippo";
-
-        Game g = new Game();
-        assertTrue(g.addPlayer(playerOne));
-
-        g.forcePosition(playerOne, 60);
-        assertEquals(60, g.playerPosition(playerOne));
-
-        assertEquals(MoveRules.MoveResult.REBOUND, g.move(playerOne, 3, 2));
-
-        assertEquals(61, g.playerPosition(playerOne));
+        MoveRules rules = new GooseMoveRules();
+        MoveRules.Result result = rules.nextPosition(60, 3, 2);
+        assertEquals(61, result.position);
+        assertEquals(MoveRules.MoveResult.REBOUND, result.type);
 
     }
 
