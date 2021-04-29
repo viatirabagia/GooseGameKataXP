@@ -37,6 +37,9 @@ public class Game {
         return player==null ? false : players.contains(player);
     }
 
+    public void move(String playerOne) {
+    }
+
     public MoveResult move(final String player, int diceOne, int diceTwo) {
         int currentPosition = playerPosition(player);
         int nextPosition = nextPosition(currentPosition, diceOne, diceTwo);
