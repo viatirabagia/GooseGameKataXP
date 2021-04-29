@@ -31,13 +31,13 @@ public class Game {
         return player==null ? false : players.contains(player);
     }
 
-    public void move(String player, int diceOne, int diceTwo) {
+    public void move(final String player, int diceOne, int diceTwo) {
         int currentPosition = playerPosition(player);
         positions.put(player, nextPosition(currentPosition, diceOne, diceTwo));
 
     }
 
-    private Integer nextPosition(int currentPosition, int diceOne, int diceTwo) {
+    private int nextPosition(int currentPosition, int diceOne, int diceTwo) {
         return currentPosition + diceOne + diceTwo;
     }
 
