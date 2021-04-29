@@ -6,15 +6,17 @@ import java.util.List;
 import java.util.Map;
 
 public class Game {
-
+    /*
     public enum MoveResult {
         WIN,
         REBOUND,
         DEFAULT
     }
+    */
 
     private List<String> players = new ArrayList<>();
     private Map<String, Integer> positions = new HashMap<>();
+    private MoveRules rules = new GooseMoveRules();
 
     /**
      *
@@ -37,29 +39,18 @@ public class Game {
         return player==null ? false : players.contains(player);
     }
 
-    public MoveResult move(final String player) {
+    public MoveRules.MoveResult move(final String player) {
         return move(player, new AutomaticDice(), new AutomaticDice());
     }
-    public MoveResult move(final String player, int diceOne, int diceTwo) {
+    public MoveRules.MoveResult move(final String player, int diceOne, int diceTwo) {
         return move(player, new HumanDice(diceOne), new HumanDice(diceTwo));
     }
 
-    public MoveResult move(final String player, Dice diceOne, Dice diceTwo) {
+    public MoveRules.MoveResult move(final String player, Dice diceOne, Dice diceTwo) {
         int currentPosition = playerPosition(player);
-        int nextPosition = nextPosition(currentPosition, diceOne.throwDice(), diceTwo.throwDice());
-        MoveResult result = MoveResult.DEFAULT;
-        if (nextPosition == 63) {
-            result = MoveResult.WIN;
-        } else if (nextPosition > 63) {
-            nextPosition = 63 - (nextPosition - 63);
-            result = MoveResult.REBOUND;
-        }
-        positions.put(player, nextPosition);
-        return result;
-    }
-
-    private int nextPosition(int currentPosition, int diceOne, int diceTwo) {
-        return currentPosition + diceOne + diceTwo;
+        MoveRules.Result result = rules.nextPosition(currentPosition, diceOne.throwDice(), diceTwo.throwDice());
+        positions.put(player, result.position);
+        return result.type;
     }
 
     public int playerPosition(final String player) {

@@ -18,7 +18,7 @@ public class WinTest {
         g.forcePosition(playerOne, 60);
         assertEquals(60, g.playerPosition(playerOne));
 
-        assertEquals(Game.MoveResult.WIN, g.move(playerOne, 1, 2));
+        assertEquals(MoveRules.MoveResult.WIN, g.move(playerOne, 1, 2));
 
     }
 
@@ -33,7 +33,7 @@ public class WinTest {
         g.forcePosition(playerOne, 60);
         assertEquals(60, g.playerPosition(playerOne));
 
-        assertEquals(Game.MoveResult.REBOUND, g.move(playerOne, 3, 2));
+        assertEquals(MoveRules.MoveResult.REBOUND, g.move(playerOne, 3, 2));
 
         assertEquals(61, g.playerPosition(playerOne));
 
