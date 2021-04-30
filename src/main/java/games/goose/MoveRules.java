@@ -8,6 +8,7 @@ public interface MoveRules {
         WIN,
         REBOUND,
         GOOSE,
+        BRIDGE,
         DEFAULT
     }
     public class Result {

@@ -34,7 +34,7 @@ public class GooseGame implements Game {
      */
     public boolean addPlayer(final String player) {
         boolean success = false;
-        if (player != null && !players.contains(player)) {
+        if (!existPlayer(player)) {
             players.add(player);
             success = true;
         }
@@ -60,6 +60,10 @@ public class GooseGame implements Game {
     }
 
     private MoveRules.MoveResult move(final String player, Dice diceOne, Dice diceTwo) {
+        if (!existPlayer(player)) {
+            return null;
+        }
+        //
         int currentPosition = playerPosition(player);
         int diceThrownOne = diceOne.throwDice();
         int diceThrownTwo = diceTwo.throwDice();

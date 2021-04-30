@@ -9,6 +9,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
+import static games.goose.MoveRules.MoveResult;
+
 public class Main {
 
     public static void main(String[] args) throws Exception {
@@ -63,24 +65,35 @@ public class Main {
             if (moves == null || moves.isEmpty()) {
                 return;
             }
-            boolean previousIsGoose = false;
+            //boolean previousIsGoose = false;
+            //boolean previousIsTheBridge = false;
+            //boolean previousIsGoose = false;
+            MoveResult previousType = null;
             for (MoveRules.Result m : moves) {
-                if (previousIsGoose) {
+                if (MoveResult.GOOSE.equals(previousType)) {
                     System.out.print(player + " moves again and goes to " + m.position + ". ");
+                } else if (MoveRules.MoveResult.BRIDGE.equals(previousType)) {
+                    System.out.print(player + " jumps to " + m.position + ". ");
+                } else if (MoveResult.REBOUND.equals(previousType)) {
+                    System.out.print(player + " returns to " + m.position + ". ");
                 } else {
                     System.out.print(player + " rolls " + diceOne + "," + diceTwo + ". ");
-                    System.out.print(player + " moves from " + (m.previousPosition == 0 ? "Start" : m.previousPosition) + " to " + m.position + ". ");
+                    System.out.print(player + " moves from " + (m.previousPosition == 0 ? "Start" : m.previousPosition)
+                            + " to " + (MoveResult.BRIDGE.equals(m.type) ? " The Bridge " : m.position) + ". ");
                 }
                 //
-                previousIsGoose = false;
-                if (MoveRules.MoveResult.WIN.equals(m.type)) {
+                //previousIsGoose = false;
+                if (MoveResult.WIN.equals(m.type)) {
                     System.out.print(player + " Wins!! ");
-                } else if (MoveRules.MoveResult.REBOUND.equals(m.type)) {
+                } else if (MoveResult.REBOUND.equals(m.type)) {
                     System.out.print(player + " bounces! ");
-                } else if (MoveRules.MoveResult.GOOSE.equals(m.type)) {
+                } else if (MoveResult.GOOSE.equals(m.type)) {
                     System.out.print(" The goose! ");
-                    previousIsGoose = true;
+                    //previousIsGoose = true;
+                } else if (MoveResult.BRIDGE.equals(m.type)) {
+                    //previousIsTheBridge = true;
                 }
+                previousType = m.type;
             }
             System.out.println();
         }
