@@ -10,13 +10,18 @@ import java.util.List;
 import java.util.Map;
 
 public class GooseGame implements Game {
-    /*
-    public enum MoveResult {
-        WIN,
-        REBOUND,
-        DEFAULT
+
+    public static interface Listener {
+        public void notifyAddPlayer(final String player, boolean added);
+        public void notifyMovePlayer(final String player, int diceOne, int diceTwo,
+                                     final MovesHistory moves);
     }
-    */
+
+    private Listener listener;
+
+    public void setListener(Listener listener) {
+        this.listener = listener;
+    }
 
     private List<String> players = new ArrayList<>();
     private Map<String, Integer> positions = new HashMap<>();
@@ -28,11 +33,15 @@ public class GooseGame implements Game {
      * @return true if added, false otherwise
      */
     public boolean addPlayer(final String player) {
-        if (player == null || players.contains(player)) {
-            return false;
+        boolean success = false;
+        if (player != null && !players.contains(player)) {
+            players.add(player);
+            success = true;
         }
-        players.add(player);
-        return true;
+        if (listener != null) {
+            listener.notifyAddPlayer(player, success);
+        }
+        return success;
     }
 
     public int getPlayersCount() {
@@ -52,9 +61,17 @@ public class GooseGame implements Game {
 
     private MoveRules.MoveResult move(final String player, Dice diceOne, Dice diceTwo) {
         int currentPosition = playerPosition(player);
-        MoveRules.Result result = rules.nextPosition(currentPosition, diceOne.throwDice(), diceTwo.throwDice());
-        positions.put(player, result.position);
-        return result.type;
+        int diceThrownOne = diceOne.throwDice();
+        int diceThrownTwo = diceTwo.throwDice();
+        MovesHistory result = rules.nextPosition(currentPosition, diceThrownOne, diceThrownTwo);
+        positions.put(player, result.lastMove().position);
+        //
+        if (listener != null) {
+            //MoveRules.Result[] moves = result.toArray(new MoveRules.Result[] {});
+            listener.notifyMovePlayer(player, diceThrownOne, diceThrownTwo, result);
+        }
+        //
+        return result.lastMove().type;
     }
 
     public int playerPosition(final String player) {
@@ -63,6 +80,10 @@ public class GooseGame implements Game {
             return 0;
         }
         return currentPosition;
+    }
+
+    public String[] getPlayersList() {
+        return players.toArray(new String[] {});
     }
 
 }

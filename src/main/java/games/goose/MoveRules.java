@@ -1,20 +1,33 @@
 package games.goose;
 
+import java.util.List;
+
 public interface MoveRules {
 
     public enum MoveResult {
         WIN,
         REBOUND,
+        GOOSE,
         DEFAULT
     }
     public class Result {
         public final MoveResult type;
+        public final int previousPosition;
         public final int position;
 
-        public Result(MoveResult type, int position) {
+        public Result(final MoveResult type, int position, int previousPosition) {
             this.type = type;
             this.position = position;
+            this.previousPosition = previousPosition;
         }
     }
-    public Result nextPosition(int currentPosition, int dice1, int dice2);
+
+    /**
+     *
+     * @param currentPosition
+     * @param dice1
+     * @param dice2
+     * @return moves done
+     */
+    public MovesHistory nextPosition(int currentPosition, int dice1, int dice2);
 }

@@ -1,5 +1,6 @@
 package games.goose;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,7 +9,9 @@ public class GooseMoveRules implements MoveRules {
     private final static List<Integer> goosePositions = Arrays.asList(5,14,23,9,18,27);
 
     @Override
-    public Result nextPosition(int currentPosition, int dice1, int dice2) {
+    public MovesHistory nextPosition(int currentPosition, int dice1, int dice2) {
+        MovesHistory moves = new MovesHistory();
+        //
         int nextPosition = calculateNextPosition(currentPosition, dice1, dice2);
         MoveResult type = MoveResult.DEFAULT;
         if (nextPosition == 63) {
@@ -19,9 +22,12 @@ public class GooseMoveRules implements MoveRules {
         } else if (nextPosition == 6) {
             nextPosition = 12;
         } else if (goosePositions.contains(nextPosition)) {
-            return nextPosition(nextPosition, dice1, dice2);
+            moves.add(new Result(MoveResult.GOOSE, nextPosition, currentPosition));
+            moves.add(nextPosition(nextPosition, dice1, dice2));
+            return moves;
         }
-        return  new Result(type, nextPosition);
+        moves.add(new Result(type, nextPosition, currentPosition));
+        return moves;
     }
 
     private int calculateNextPosition(int currentPosition, int diceOne, int diceTwo) {
