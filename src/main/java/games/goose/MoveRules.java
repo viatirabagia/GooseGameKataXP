@@ -1,7 +1,5 @@
 package games.goose;
 
-import java.util.List;
-
 public interface MoveRules {
 
     public enum MoveResult {

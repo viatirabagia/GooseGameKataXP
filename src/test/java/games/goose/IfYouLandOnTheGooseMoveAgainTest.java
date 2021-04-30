@@ -3,8 +3,6 @@ package games.goose;
 
 import org.junit.Test;
 
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 
 public class IfYouLandOnTheGooseMoveAgainTest {
@@ -14,7 +12,6 @@ public class IfYouLandOnTheGooseMoveAgainTest {
         MoveRules rules = new GooseMoveRules();
         MovesHistory result = rules.nextPosition(3, 1, 1);
         assertEquals(7, result.lastMove().position);
-        //5,14,23,9,18,27
     }
 
     @Test

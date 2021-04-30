@@ -13,11 +13,11 @@ import static games.goose.MoveRules.MoveResult;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         listen();
     }
 
-    private static void listen() throws Exception {
+    private static void listen() {
         GooseGame game = new GooseGame();
         game.setListener(new GameListener(game));
         CommandInterpreter cmdInterpreter = new CommandInterpreter(game);
@@ -65,9 +65,6 @@ public class Main {
             if (moves == null || moves.isEmpty()) {
                 return;
             }
-            //boolean previousIsGoose = false;
-            //boolean previousIsTheBridge = false;
-            //boolean previousIsGoose = false;
             MoveResult previousType = null;
             for (MoveRules.Result m : moves) {
                 if (MoveResult.GOOSE.equals(previousType)) {
@@ -82,16 +79,13 @@ public class Main {
                             + " to " + (MoveResult.BRIDGE.equals(m.type) ? " The Bridge " : m.position) + ". ");
                 }
                 //
-                //previousIsGoose = false;
                 if (MoveResult.WIN.equals(m.type)) {
                     System.out.print(player + " Wins!! ");
                 } else if (MoveResult.REBOUND.equals(m.type)) {
                     System.out.print(player + " bounces! ");
                 } else if (MoveResult.GOOSE.equals(m.type)) {
                     System.out.print(" The goose! ");
-                    //previousIsGoose = true;
                 } else if (MoveResult.BRIDGE.equals(m.type)) {
-                    //previousIsTheBridge = true;
                 }
                 previousType = m.type;
             }
