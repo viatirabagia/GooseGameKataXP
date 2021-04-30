@@ -12,7 +12,10 @@ public class CommandInterpreterTest {
         MockGame game = new MockGame();
         CommandInterpreter i = new CommandInterpreter(game);
         i.command("add player Pippo");
-        assertTrue(game.addedPlayer("Pippo"));
+        assertTrue(game.isLastAddedPlayer("Pippo"));
+        i.command("add player Pluto");
+        assertFalse(game.isLastAddedPlayer("Pippo"));
+        assertTrue(game.isLastAddedPlayer("Pluto"));
     }
     @Test
     public void movePlayer()
@@ -21,7 +24,8 @@ public class CommandInterpreterTest {
         CommandInterpreter i = new CommandInterpreter(game);
         i.command("move Pippo 2, 3");
         assertTrue(game.isLastMovedPlayer("Pippo"));
-        assertEquals(new int[] {2,3}, game.lastMove("Pippo"));
+        assertEquals(2, game.lastMove()[0]);
+        assertEquals(3, game.lastMove()[1]);
     }
 
     @Test
