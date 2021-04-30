@@ -21,10 +21,7 @@ public class GooseMoveRules implements MoveRules {
         } else if (goosePositions.contains(nextPosition)) {
             return nextPosition(nextPosition, dice1, dice2);
         }
-        Result r = new Result();
-        r.type = type;
-        r.position = nextPosition;
-        return r;
+        return  new Result(type, nextPosition);
     }
 
     private int calculateNextPosition(int currentPosition, int diceOne, int diceTwo) {
