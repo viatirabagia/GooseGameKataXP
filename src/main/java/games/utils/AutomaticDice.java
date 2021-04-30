@@ -1,4 +1,4 @@
-package games.goose;
+package games.utils;
 
 public class AutomaticDice implements Dice {
     @Override

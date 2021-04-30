@@ -1,5 +1,9 @@
 package games.goose;
 
+import games.utils.AutomaticDice;
+import games.utils.Dice;
+import games.utils.HumanDice;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
