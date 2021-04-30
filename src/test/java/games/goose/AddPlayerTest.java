@@ -9,7 +9,7 @@ public class AddPlayerTest {
     @Test
     public void addFirstPlayer()
     {
-        Game g = new Game();
+        GooseGame g = new GooseGame();
         assertTrue(g.addPlayer("Pippo"));
         assertEquals(1, g.getPlayersCount());
         assertTrue(g.existPlayer("Pippo"));
@@ -18,7 +18,7 @@ public class AddPlayerTest {
     @Test
     public void addSecondPlayer()
     {
-        Game g = new Game();
+        GooseGame g = new GooseGame();
         assertTrue(g.addPlayer("Pippo"));
         assertTrue(g.addPlayer("Pluto"));
         assertEquals(2, g.getPlayersCount());
@@ -28,7 +28,7 @@ public class AddPlayerTest {
     @Test
     public void addExistingPlayer()
     {
-        Game g = new Game();
+        GooseGame g = new GooseGame();
         assertTrue(g.addPlayer("Pippo"));
         assertFalse(g.addPlayer("Pippo"));
         assertEquals(1, g.getPlayersCount());

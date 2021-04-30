@@ -13,7 +13,7 @@ public class MovePlayerTest {
         String playerOne = "Pippo";
         String playerTwo = "Pluto";
 
-        Game g = new Game();
+        GooseGame g = new GooseGame();
         assertTrue(g.addPlayer(playerOne));
         assertTrue(g.addPlayer(playerTwo));
 
@@ -31,7 +31,7 @@ public class MovePlayerTest {
     public void moveFromPosition() {
         String playerOne = "Pippo";
 
-        Game g = new Game();
+        GooseGame g = new GooseGame();
         assertTrue(g.addPlayer(playerOne));
         g.move(playerOne, 4, 3);
         assertEquals(7, g.playerPosition(playerOne));
