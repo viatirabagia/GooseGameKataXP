@@ -5,6 +5,7 @@ import games.goose.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.List;
 
 import static games.goose.MoveRules.MoveResult;
 
@@ -16,7 +17,7 @@ public class Main {
 
     private static void listen() {
         GooseGame game = new GooseGame();
-        game.setListener(new GameListener(game));
+        game.setListener(new GameListener());
         CommandInterpreter cmdInterpreter = new CommandInterpreter(game);
         try {
             System.out.println(">enter bye to terminate");
@@ -39,19 +40,19 @@ public class Main {
     }
 
     private static class GameListener implements GooseGame.Listener {
-        private final GooseGame game;
+        //private final GooseGame game;
 
-        private GameListener(GooseGame game) {
-            this.game = game;
-        }
+        //private GameListener(GooseGame game) {
+        //    this.game = game;
+        //}
 
         @Override
-        public void notifyAddPlayer(String player, boolean added) {
+        public void notifyAddPlayer(final String player, boolean added, final List<String> players) {
             System.out.println(added ? "add player " + player : player + ": already existing player");
             //list existing players
-            String[] players = game.getPlayersList();
+            //String[] players = game.getPlayersList();
             System.out.print("players:");
-            Arrays.stream(players).forEach(p -> System.out.print(p + ","));
+            players.stream().forEach(p -> System.out.print(p + ","));
             System.out.println();
         }
 

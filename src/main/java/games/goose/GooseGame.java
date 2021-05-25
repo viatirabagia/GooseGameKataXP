@@ -12,7 +12,7 @@ import java.util.Map;
 public class GooseGame implements Game {
 
     public static interface Listener {
-        public void notifyAddPlayer(final String player, boolean added);
+        public void notifyAddPlayer(final String player, boolean added,  final List<String> players);
         public void notifyMovePlayer(final String player, int diceOne, int diceTwo,
                                      final MovesHistory moves);
     }
@@ -39,7 +39,7 @@ public class GooseGame implements Game {
             success = true;
         }
         if (listener != null) {
-            listener.notifyAddPlayer(player, success);
+            listener.notifyAddPlayer(player, success, players);
         }
         return success;
     }
