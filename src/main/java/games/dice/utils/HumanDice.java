@@ -1,4 +1,4 @@
-package games.utils;
+package games.dice.utils;
 
 public class HumanDice implements Dice {
 

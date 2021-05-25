@@ -1,4 +1,8 @@
-package games.goose;
+package games.dice.goose;
+
+import games.MoveResult;
+import games.dice.MoveRules;
+import games.dice.Game;
 
 public class MockGame implements Game {
 
@@ -13,14 +17,14 @@ public class MockGame implements Game {
     }
 
     @Override
-    public MoveRules.MoveResult move(String player) {
+    public MoveResult move(String player) {
         this.lastMovedPlayer = player;
         this.lastMove = null;
         return null;
     }
 
     @Override
-    public MoveRules.MoveResult move(String player, int diceOne, int diceTwo) {
+    public MoveResult move(String player, int diceOne, int diceTwo) {
         this.lastMovedPlayer = player;
         this.lastMove = new int[] {diceOne, diceTwo};
         return null;

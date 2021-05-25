@@ -1,8 +1,12 @@
-package games.goose;
+package games.dice.goose;
 
-import games.utils.AutomaticDice;
-import games.utils.Dice;
-import games.utils.HumanDice;
+import games.MoveResult;
+import games.dice.MoveRules;
+import games.MovesHistory;
+import games.dice.Game;
+import games.dice.utils.AutomaticDice;
+import games.dice.utils.Dice;
+import games.dice.utils.HumanDice;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,14 +56,14 @@ public class GooseGame implements Game {
         return player==null ? false : players.contains(player);
     }
 
-    public MoveRules.MoveResult move(final String player) {
+    public MoveResult move(final String player) {
         return move(player, new AutomaticDice(), new AutomaticDice());
     }
-    public MoveRules.MoveResult move(final String player, int diceOne, int diceTwo) {
+    public MoveResult move(final String player, int diceOne, int diceTwo) {
         return move(player, new HumanDice(diceOne), new HumanDice(diceTwo));
     }
 
-    private MoveRules.MoveResult move(final String player, Dice diceOne, Dice diceTwo) {
+    private MoveResult move(final String player, Dice diceOne, Dice diceTwo) {
         if (!existPlayer(player)) {
             return null;
         }
@@ -71,7 +75,7 @@ public class GooseGame implements Game {
         positions.put(player, result.lastMove().position);
         //
         if (listener != null) {
-            //MoveRules.Result[] moves = result.toArray(new MoveRules.Result[] {});
+            //Result[] moves = result.toArray(new Result[] {});
             listener.notifyMovePlayer(player, diceThrownOne, diceThrownTwo, result);
         }
         //

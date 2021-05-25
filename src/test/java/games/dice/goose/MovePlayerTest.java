@@ -1,5 +1,6 @@
-package games.goose;
+package games.dice.goose;
 
+import games.dice.goose.GooseGame;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

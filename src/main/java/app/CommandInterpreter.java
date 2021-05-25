@@ -1,4 +1,6 @@
-package games.goose;
+package app;
+
+import games.dice.Game;
 
 import java.util.StringTokenizer;
 

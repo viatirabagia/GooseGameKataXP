@@ -1,6 +1,8 @@
-package games.goose;
+package games.dice.goose;
 
 
+import games.dice.MoveRules;
+import games.MovesHistory;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

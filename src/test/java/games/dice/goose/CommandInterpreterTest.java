@@ -1,5 +1,6 @@
-package games.goose;
+package games.dice.goose;
 
+import app.CommandInterpreter;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

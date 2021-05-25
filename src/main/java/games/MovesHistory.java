@@ -1,4 +1,6 @@
-package games.goose;
+package games;
+
+import games.dice.MoveRules;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -6,15 +8,15 @@ import java.util.List;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
-public class MovesHistory implements Iterable<MoveRules.Result> {
+public class MovesHistory implements Iterable<Result> {
 
-    List<MoveRules.Result> moves = new ArrayList<>();
+    List<Result> moves = new ArrayList<>();
 
-    public void add(MoveRules.Result move) {
+    public void add(Result move) {
         moves.add(move);
     }
 
-    public MoveRules.Result lastMove() {
+    public Result lastMove() {
         if (moves.isEmpty()) {
             return null;
         }
@@ -25,8 +27,8 @@ public class MovesHistory implements Iterable<MoveRules.Result> {
         if (otherHistory == null || otherHistory.isEmpty()) {
             return;
         }
-        for (Iterator<MoveRules.Result> it = otherHistory.iterator(); it.hasNext(); ) {
-            MoveRules.Result move = it.next();
+        for (Iterator<Result> it = otherHistory.iterator(); it.hasNext(); ) {
+            Result move = it.next();
             this.add(move);
         }
     }
@@ -36,17 +38,17 @@ public class MovesHistory implements Iterable<MoveRules.Result> {
     }
 
     @Override
-    public Iterator<MoveRules.Result> iterator() {
+    public Iterator<Result> iterator() {
         return moves.iterator();
     }
 
     @Override
-    public void forEach(Consumer<? super MoveRules.Result> action) {
+    public void forEach(Consumer<? super Result> action) {
         moves.forEach(action);
     }
 
     @Override
-    public Spliterator<MoveRules.Result> spliterator() {
+    public Spliterator<Result> spliterator() {
         return moves.spliterator();
     }
 

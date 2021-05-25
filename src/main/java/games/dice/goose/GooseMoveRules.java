@@ -1,6 +1,10 @@
-package games.goose;
+package games.dice.goose;
 
-import java.util.ArrayList;
+import games.MoveResult;
+import games.Result;
+import games.dice.MoveRules;
+import games.MovesHistory;
+
 import java.util.Arrays;
 import java.util.List;
 

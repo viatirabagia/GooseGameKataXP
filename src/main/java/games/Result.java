@@ -1,10 +1,7 @@
-package games.goose;
+package games;
 
-public interface MoveRules {
+public class Result {
 
-    public interface MoveResult {};
-
-    public class Result {
         public final MoveResult type;
         public final int previousPosition;
         public final int position;
@@ -14,14 +11,4 @@ public interface MoveRules {
             this.position = position;
             this.previousPosition = previousPosition;
         }
-    }
-
-    /**
-     *
-     * @param currentPosition
-     * @param dice1
-     * @param dice2
-     * @return moves done
-     */
-    public MovesHistory nextPosition(int currentPosition, int dice1, int dice2);
 }

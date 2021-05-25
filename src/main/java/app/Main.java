@@ -1,13 +1,15 @@
-package games;
+package app;
 
-import games.goose.*;
+import games.MoveResult;
+import games.Result;
+import games.dice.MoveRules;
+import games.MovesHistory;
+import games.dice.goose.GooseGame;
+import games.dice.goose.GooseMoveResult;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.List;
-
-import static games.goose.MoveRules.MoveResult;
 
 public class Main {
 
@@ -64,7 +66,7 @@ public class Main {
                 return;
             }
             MoveResult previousType = null;
-            for (MoveRules.Result m : moves) {
+            for (Result m : moves) {
                 if (GooseMoveResult.GOOSE.equals(previousType)) {
                     System.out.print(player + " moves again and goes to " + m.position + ". ");
                 } else if (GooseMoveResult.BRIDGE.equals(previousType)) {
