@@ -1,9 +1,6 @@
 package games;
 
-import games.goose.CommandInterpreter;
-import games.goose.GooseGame;
-import games.goose.MoveRules;
-import games.goose.MovesHistory;
+import games.goose.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -67,25 +64,25 @@ public class Main {
             }
             MoveResult previousType = null;
             for (MoveRules.Result m : moves) {
-                if (MoveResult.GOOSE.equals(previousType)) {
+                if (GooseMoveResult.GOOSE.equals(previousType)) {
                     System.out.print(player + " moves again and goes to " + m.position + ". ");
-                } else if (MoveRules.MoveResult.BRIDGE.equals(previousType)) {
+                } else if (GooseMoveResult.BRIDGE.equals(previousType)) {
                     System.out.print(player + " jumps to " + m.position + ". ");
-                } else if (MoveResult.REBOUND.equals(previousType)) {
+                } else if (GooseMoveResult.REBOUND.equals(previousType)) {
                     System.out.print(player + " returns to " + m.position + ". ");
                 } else {
                     System.out.print(player + " rolls " + diceOne + "," + diceTwo + ". ");
                     System.out.print(player + " moves from " + (m.previousPosition == 0 ? "Start" : m.previousPosition)
-                            + " to " + (MoveResult.BRIDGE.equals(m.type) ? " The Bridge " : m.position) + ". ");
+                            + " to " + (GooseMoveResult.BRIDGE.equals(m.type) ? " The Bridge " : m.position) + ". ");
                 }
                 //
-                if (MoveResult.WIN.equals(m.type)) {
+                if (GooseMoveResult.WIN.equals(m.type)) {
                     System.out.print(player + " Wins!! ");
-                } else if (MoveResult.REBOUND.equals(m.type)) {
+                } else if (GooseMoveResult.REBOUND.equals(m.type)) {
                     System.out.print(player + " bounces! ");
-                } else if (MoveResult.GOOSE.equals(m.type)) {
+                } else if (GooseMoveResult.GOOSE.equals(m.type)) {
                     System.out.print(" The goose! ");
-                } else if (MoveResult.BRIDGE.equals(m.type)) {
+                } else if (GooseMoveResult.BRIDGE.equals(m.type)) {
                 }
                 previousType = m.type;
             }

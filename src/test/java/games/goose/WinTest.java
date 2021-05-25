@@ -12,7 +12,7 @@ public class WinTest {
         MoveRules rules = new GooseMoveRules();
         MovesHistory result  = rules.nextPosition(60, 1, 2);
         assertEquals(63, result.lastMove().position);
-        assertEquals(MoveRules.MoveResult.WIN, result.lastMove().type);
+        assertEquals(GooseMoveResult.WIN, result.lastMove().type);
 
     }
 

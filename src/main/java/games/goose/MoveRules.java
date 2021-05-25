@@ -2,13 +2,8 @@ package games.goose;
 
 public interface MoveRules {
 
-    public enum MoveResult {
-        WIN,
-        REBOUND,
-        GOOSE,
-        BRIDGE,
-        DEFAULT
-    }
+    public interface MoveResult {};
+
     public class Result {
         public final MoveResult type;
         public final int previousPosition;
